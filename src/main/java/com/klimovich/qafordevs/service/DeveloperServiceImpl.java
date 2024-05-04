@@ -22,8 +22,9 @@ public class DeveloperServiceImpl implements DeveloperService {
     public DeveloperEntity saveDeveloper(DeveloperEntity developer) {
         DeveloperEntity duplicateCandidate = developerRepository.findByEmail(developer.getEmail());
         if (Objects.nonNull(duplicateCandidate)) {
-            throw new DeveloperWithDuplicateEmailException("Developer with defined email is already exist");
+            throw new DeveloperWithDuplicateEmailException("Developer with defined email is already existed");
         }
+        developer.setStatus(Status.ACTIVE);
         return developerRepository.save(developer);
     }
 
